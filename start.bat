@@ -1,3 +1,3 @@
 @echo off
-set FLASK_APP=main.py
+set FLASK_APP=app/main.py
 python -m flask run
