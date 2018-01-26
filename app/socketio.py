@@ -24,4 +24,4 @@ def test_disconnect():
 
 def sendToChat(msg):
     print('Chat>>' + msg)
-    emit('chat', msg)
+    emit('chat', msg, broadcast=True)
