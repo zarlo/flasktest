@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block Content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
+
+<center>
+  <h1>Chat</h1>
+  <input id="m" autocomplete="off" /><button id="DBC">Send</button>
+  <ul id="Chat"></ul>
+
+</center>
+<script type="text/javascript">
+  var islogedin = false;
+
+  var socket = io.connect(location.href);
+
+  socket.on('chat', function(data) {
+    addtolog(data['name'] + data['data']);
+  });
+
+  function addtolog(msg) {
+    $('#chatlog').append(msg);
+  }
+
+  function login() {
+
+  }
+
+  function sendText(msg) {
+    socket.emit(chat, data: msg);
+  }
+
+  $("#DBC").click(function() {
+    if (islogedin == false) {
+      addtolog("you need to set a user name");
+    }
+    sendText($('#m').val());
+    $('#m').val('');
+  });
+</script>
+
+{% endblock %}
