@@ -23,5 +23,5 @@ def test_disconnect():
     session['Name'] = None
 
 def sendToChat(msg):
-    print('Chat>>' + msg, file=sys.stdout)
+    print('Chat>>' + msg)
     emit('chat', msg)
