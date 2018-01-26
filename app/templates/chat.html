@@ -1,45 +1,16 @@
 {% extends "base.html" %} {% block Content %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
-
+<script src="/static/js/chat.js"></script>
 <center>
   <h1>Chat</h1>
+  <div id="chatlog" class="chat-log">
+    <ul style="list-style-type:none" id="Chat">
+      {{OldChatLog|safe}}
+    </ul>
+  </div>
   <input id="m" autocomplete="off" /><button id="DBC">Send</button>
-  <ul style="list-style-type:none" id="Chat"></ul>
 
 </center>
-<script type="text/javascript">
-  var islogedin = true;
 
-  var socket = io.connect('/chat');
-
-  //socket.emit('join', "test");
-
-  socket.on('chat', function(data) {
-    addtolog(data);
-  });
-
-  function addtolog(msg) {
-    $('#Chat').append('<li>' + msg + '</li>');
-  }
-
-  function login() {
-
-  }
-
-  function sendText(msg) {
-    socket.emit('chat', msg);
-  }
-
-  $("#DBC").click(function() {
-    if (islogedin == false) {
-      addtolog("you need to set a user name");
-    }
-    if ($('#m').val().replace(/\s/g, '') == '') {
-      return;
-    }
-    sendText($('#m').val());
-    $('#m').val('');
-  });
-</script>
 
 {% endblock %}

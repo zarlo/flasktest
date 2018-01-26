@@ -1,8 +1,6 @@
 from flask import Flask, session
 from flask_socketio import SocketIO
 
-print(__name__)
-
 app = Flask(__name__)
 
 

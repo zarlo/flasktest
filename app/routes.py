@@ -1,4 +1,5 @@
 from .main import app, session
+from .db import *
 from flask import Flask, request, render_template
 
 @app.route("/")
@@ -8,7 +9,7 @@ def index():
 @app.route("/chat")
 def chat():
     session['Name'] = request.remote_addr
-    return render_template('chat.html')
+    return render_template('chat.html', OldChatLog=Getlast20())
 
 @app.route("/whats_my_ip")
 def whats_my_ip():
