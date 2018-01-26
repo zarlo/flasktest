@@ -1,22 +1,27 @@
 
-from .main import socketio
-from flask_socketio import SocketIO, emit, join_room, leave_room, close_room, rooms, disconnect
+from .main import socketio, session
+from flask_socketio import  emit, disconnect
+import sys
 
-@socketio.on('join')
+@socketio.on('join', namespace='/chat')
 def chat_join(name):
-    if session['Name'] is not None:
-        return
     session['Name'] = name
-    emit('chat',
-         {'data': 'Joined','name': session['Name']})
+    sendToChat(session['Name'] + " Joined")
 
-@socketio.on('chat')
+@socketio.on('chat', namespace='/chat')
 def chat_message(message):
-    emit('chat',
-         {'data': ":" + message['data'], 'name': session['Name']})
+    sendToChat(session['Name'] + ":" + message)
 
-@socketio.on('disconnect')
+
+@socketio.on('disconnect', namespace='/chat')
 def test_disconnect():
-        emit('chat',
-             {'data': 'Left', 'name': session['Name']})
-        session['Name'] = None
+    try:
+        sendToChat(session['Name'] + ' Left')
+    except Exception as e:
+        raise
+
+    session['Name'] = None
+
+def sendToChat(msg):
+    print('Chat>>' + msg, file=sys.stdout)
+    emit('chat', msg)
