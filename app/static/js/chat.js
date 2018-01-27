@@ -39,7 +39,3 @@ $(document).keypress(function(e) {
     sendText();
   }
 });
-
-$("#DBC").click(function() {
-  sendText();
-});
