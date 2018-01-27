@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from pymongo.errors import ConnectionFailure
 import os
 import binascii
 
@@ -9,6 +10,9 @@ class monogo(object):
 
     def Init():
         client = MongoClient(port=27020)
+        if client in None:
+            raise Exception('no mongo')
+
         monogo.db = client.flasktest
 
     def AddChatLog(sender, text):
