@@ -2,6 +2,9 @@ var islogedin = true;
 
 var socket = io.connect('/chat');
 
+var audio = new Audio('static/audio/ding.wav');
+
+
 //socket.emit('join', "test");
 
 $(function() {
@@ -10,6 +13,7 @@ $(function() {
 
 socket.on('chat', function(data) {
   addtolog(data);
+  //audio.play();
 });
 
 function addtolog(msg) {

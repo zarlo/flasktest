@@ -17,7 +17,7 @@ body {
 .chat-log {
 
     width: : 75vh;
-    min-height: 25vh;
-    max-height: 25vh;
+    min-height: 50vh;
+    max-height: 50vh;
     overflow-y: scroll;
 }

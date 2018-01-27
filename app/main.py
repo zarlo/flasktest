@@ -1,11 +1,13 @@
 from flask import Flask, session
 from flask_socketio import SocketIO
-
-
 from .chatlog import *
 from .mem import *
+from .mongo import *
 
-
+# try:
+#    monogo.Init()
+#    chatlog.Init(monogo.AddChatLog, monogo.Getlast20)
+# except Exception as e:
 chatlog.Init(mem.AddChatLog, mem.Getlast20)
 
 chatlog.AddChatLog('test', 'this is a test')
