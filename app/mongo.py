@@ -9,7 +9,7 @@ class monogo(object):
     db = None
 
     def Init():
-        client = MongoClient(port=27020)
+        client = MongoClient(port=27017)
         if client in None:
             raise Exception('no mongo')
 
