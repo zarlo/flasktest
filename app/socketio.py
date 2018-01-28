@@ -1,4 +1,4 @@
-
+import html
 from .main import socketio, session
 from flask_socketio import emit, disconnect
 import sys
@@ -13,8 +13,8 @@ def chat_join(name):
 
 @socketio.on('chat', namespace='/chat')
 def chat_message(message):
-    chatlog.AddChatLog(session['Name'], message)
-    sendToChat(session['Name'] + ":" + message)
+    chatlog.AddChatLog(session['Name'], html.escape(message))
+    sendToChat(html.escape(session['Name'] + ":" + message))
 
 
 @socketio.on('disconnect', namespace='/chat')
