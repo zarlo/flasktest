@@ -11,10 +11,10 @@ class monogo(object):
     def Init():
         client = MongoClient("flasktest", host='127.0.0.1', port=27017)
 
+        monogo.db = client.flasktest_database
+
         if client in None:
             raise Exception('no mongo')
-
-        monogo.db = client.flasktest
 
     def AddChatLog(sender, text):
         log = {'id': binascii.b2a_hex(os.urandom(
