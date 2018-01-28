@@ -13,7 +13,7 @@ class monogo(object):
 
         monogo.db = client.flasktest_database
 
-        if client in None:
+        if monogo.db in None:
             raise Exception('no mongo')
 
     def AddChatLog(sender, text):
