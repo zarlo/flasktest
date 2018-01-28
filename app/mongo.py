@@ -9,7 +9,8 @@ class monogo(object):
     db = None
 
     def Init():
-        client = MongoClient(host='127.0.0.1', port=27017)
+        client = MongoClient("flasktest", host='127.0.0.1', port=27017)
+
         if client in None:
             raise Exception('no mongo')
 
