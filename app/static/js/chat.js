@@ -38,7 +38,7 @@ function sendText() {
 
 }
 
-$(document).keypress(function(e) {
+$.keypress(function(e) {
   if (e.which == 13) {
     sendText();
   }
